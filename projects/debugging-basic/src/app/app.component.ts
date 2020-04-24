@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  servers;
+  servers = []  ;
 
   onAddServer() {
     this.servers.push('Another server');

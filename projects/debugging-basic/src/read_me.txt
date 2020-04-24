@@ -23,6 +23,16 @@ here when we click to delete server we can delete server except last server or c
 this is not showing error but our logic is different
 we can debug this error using chrome debugger extension(developer tool) using on click function
 
+goto => source->main.bundle.js and serch the function
+    or
+goto => source->(ctrl+p) and type app.component.ts -> find function
+and click to debug start from perticular line number 
+
 here we are deleting index+1 item from the server array 
 
 so we can fix this error according to our logic
+
+-------------------------------------------------------
+debug usin angular-augury extention developer tool
+
+install angular augury in chrome browser and reload application and debug (component, appModule, dependecies etc)
