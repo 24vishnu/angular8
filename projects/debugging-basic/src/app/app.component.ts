@@ -6,14 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  servers = []  ;
+  serverElements = [{type: 'server', name: 'Test', content: 'simple Test'}];
 
-  onAddServer() {
-    this.servers.push('Another server');
-  }
-
-  onRemoveServer(id: number) {
-    const position = id;
-    this.servers.splice(position, 1);
-  }
 }
