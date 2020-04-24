@@ -125,6 +125,129 @@
           }
         }
       }
+    },
+    "debugging-basic": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/debugging-basic",
+      "sourceRoot": "projects/debugging-basic/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/debugging-basic",
+            "index": "projects/debugging-basic/src/index.html",
+            "main": "projects/debugging-basic/src/main.ts",
+            "polyfills": "projects/debugging-basic/src/polyfills.ts",
+            "tsConfig": "projects/debugging-basic/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/debugging-basic/src/favicon.ico",
+              "projects/debugging-basic/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/debugging-basic/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/debugging-basic/src/environments/environment.ts",
+                  "with": "projects/debugging-basic/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "debugging-basic:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "debugging-basic:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "debugging-basic:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/debugging-basic/src/test.ts",
+            "polyfills": "projects/debugging-basic/src/polyfills.ts",
+            "tsConfig": "projects/debugging-basic/tsconfig.spec.json",
+            "karmaConfig": "projects/debugging-basic/karma.conf.js",
+            "assets": [
+              "projects/debugging-basic/src/favicon.ico",
+              "projects/debugging-basic/src/assets"
+            ],
+            "styles": [
+              "projects/debugging-basic/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/debugging-basic/tsconfig.app.json",
+              "projects/debugging-basic/tsconfig.spec.json",
+              "projects/debugging-basic/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/debugging-basic/e2e/protractor.conf.js",
+            "devServerTarget": "debugging-basic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "debugging-basic:serve:production"
+            }
+          }
+        }
+      }
     }},
   "defaultProject": "section3"
 }

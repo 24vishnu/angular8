@@ -7,4 +7,4 @@
         @import "~bootstrap/dist/css/bootstrap.css";
 
 3. create a file name header and create a folder in header file name header.component.ts
-    in header.component.ts file we create and export a class name "HeaderComponent" and we have to add component decorator 
+    in header.component.ts file we create and export a class name "HeaderComponent" and we have to add component decorator ng
