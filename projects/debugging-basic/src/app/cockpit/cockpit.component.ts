@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -7,7 +7,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 // tslint:disable:no-output-rename
 export class CockpitComponent implements OnInit {
-  newServerName = '';
+  // newServerName = '';
   newServerContent = '';
   // Event emitter is a generic type so it use <> sign
   // EventEmitter an object of angular framework which allow to emitte your own events.
@@ -24,12 +24,19 @@ export class CockpitComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddServer() {
-    this.serverCreated.emit({serverName: this.newServerName, serverContent: this.newServerContent});
+  onAddServer(nameInput: HTMLInputElement) {
+    this.serverCreated.emit(
+        {
+          serverName: nameInput.value,
+          serverContent: this.newServerContent
+        });
   }
 
-  onAddBlueprint() {
-    this.blueprintCreated.emit({serverName: this.newServerName, serverContent: this.newServerContent});
+  onAddBlueprint(nameInput: HTMLInputElement) {
+    this.blueprintCreated.emit({
+              serverName: nameInput.value,
+              serverContent: this.newServerContent
+            });
   }
 
 }
