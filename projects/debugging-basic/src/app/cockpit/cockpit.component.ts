@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -8,7 +8,8 @@ import { Component, OnInit, EventEmitter, Output, ViewEncapsulation } from '@ang
 // tslint:disable:no-output-rename
 export class CockpitComponent implements OnInit {
   // newServerName = '';
-  newServerContent = '';
+  // newServerContent = '';
+
   // Event emitter is a generic type so it use <> sign
   // EventEmitter an object of angular framework which allow to emitte your own events.
   // These are not input for this coponent this is output so we use output decorator
@@ -19,6 +20,7 @@ export class CockpitComponent implements OnInit {
   @Output('bpCreated')
   blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
 
+ @ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef;
   constructor() { }
 
   ngOnInit() {
@@ -28,14 +30,14 @@ export class CockpitComponent implements OnInit {
     this.serverCreated.emit(
         {
           serverName: nameInput.value,
-          serverContent: this.newServerContent
+          serverContent: this.serverContentInput.nativeElement.value
         });
   }
 
   onAddBlueprint(nameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
               serverName: nameInput.value,
-              serverContent: this.newServerContent
+              serverContent: this.serverContentInput.nativeElement.value
             });
   }
 
