@@ -36,3 +36,4 @@ so we can fix this error according to our logic
 debug usin angular-augury extention developer tool
 
 install angular augury in chrome browser and reload application and debug (component, appModule, dependecies etc)
+
