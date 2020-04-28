@@ -37,3 +37,12 @@ debug usin angular-augury extention developer tool
 
 install angular augury in chrome browser and reload application and debug (component, appModule, dependecies etc)
 
+
+----------------- Component Lifecycle ----------------------
+ngOnChange          : Called after a bound input property changes
+ngOnInit            : Called once the component is initialized
+ngDoCheck           : Called during every change dectection run
+ngAfterContentInit  : Called every time the projected content has been checked
+ngAfterViewInit     : Called after the component's view (and child views) has been initialized
+ngAfterViewChecked  : Called every time the view (and child view) has been checked
+ngOnDestroy         : Called once the component is about to be destroyed
