@@ -13,7 +13,7 @@
       </app-server-element>
     </div>
 </div> -->
-
+<!-- 
 <h3>Assignment: Build it!</h3>
 <ol>
   <li>Create three new components: GameControl, Odd and Even</li>
@@ -33,5 +33,35 @@
   <div class="col-xs-12">
     <app-odd *ngFor="let number of oddNumbers" [number]="number"></app-odd>
     <app-even *ngFor="let number of evenNumbers" [number]="number"></app-even>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">odd numbers</button>
+      <!-- <button class="btn btn-primary" *ngIf="onlyOdd" (click)="onlyOdd = !onlyOdd">even numbers</button> -->
+      <br><br>
+      <ul class="list-group">
+        <div *ngIf="onlyOdd">
+          <li 
+            class="list-group-item" 
+            [ngClass]="{odd: number % 2 !== 0}"
+            [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'orange' : 'pink'}"
+            *ngFor="let number of oddNumber">
+                {{ number }}
+          </li>
+        </div>
+        <div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item" 
+            *ngFor="let number of evenNumber"
+            [ngClass]="{odd: number % 2 !== 0}"
+            [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'pink'}">
+              {{ number }}</li>
+        </div>
+      </ul>
+      <p appBasicHighlight>Style me using with basic directive!</p>
+    </div>
   </div>
 </div>
