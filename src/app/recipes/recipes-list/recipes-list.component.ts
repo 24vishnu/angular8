@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipes.model';
 
 @Component({
@@ -7,17 +7,20 @@ import { Recipe } from '../recipes.model';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
+  @Output() recipeWasSelected = new EventEmitter<Recipe>();
   public recipes: Recipe[] = [
-    new Recipe('Chicken Stir Fry',
+    new Recipe('Test recipe',
               'This is test recipe',
               'https://www.momontimeout.com/wp-content/uploads/2018/11/chicken-stir-fry-733x1103.jpg'),
-    new Recipe('Chicken Stir Fry',
-              'This is test recipe',
-              'https://www.momontimeout.com/wp-content/uploads/2018/11/chicken-stir-fry-733x1103.jpg')
-  ];
-  constructor() { }
+    new Recipe('Another Test recipe',
+              'Butter panner',
+              'https://holycowvegan.net/wp-content/uploads/2019/11/tofu-paneer-butter-masala-6.jpg')
+    ];
 
   ngOnInit() {
   }
 
+  onRecipeSelector(recipeData: Recipe) {
+    this.recipeWasSelected.emit(recipeData);
+  }
 }
