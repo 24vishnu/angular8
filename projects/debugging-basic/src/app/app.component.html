@@ -52,7 +52,34 @@
                 {{ number }}
           </li>
         </div>
-        <div *ngIf="!onlyOdd">
+        <!-- <div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item" 
+            *ngFor="let number of evenNumber"
+            [ngClass]="{odd: number % 2 !== 0}"
+            [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'pink'}">
+              {{ number }}</li>
+        </div> -->
+        <!-- above and blow scripts are same  
+        ng-template never meant to be used like other HTML elements. 
+        
+        It’s an internal implementation of Angular’s structural directives.
+        
+        in the above example we are not passing any else or then templates 
+        and the only input we are giving is [ngIf]
+        
+        ng-template should be used along with structural directives like [ngIf],
+        [ngFor],[NgSwitch] or custom structural directives.-->
+<!-- 
+        <ng-template [ngIf]="!onlyOdd">
+          <li
+            class="list-group-item" 
+            *ngFor="let number of evenNumber"
+            [ngClass]="{odd: number % 2 !== 0}"
+            [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'skyblue'}">
+              {{ number }}</li>
+        </ng-template> -->
+        <div *appUnless="!onlyOdd">
           <li
             class="list-group-item" 
             *ngFor="let number of evenNumber"
@@ -63,6 +90,15 @@
       </ul>
       <p appBasicHighlight>Style me using with basic directive!</p>
       <p [appBetterHighlight]="'red'" [defaultColor]="'peru'" >This style is using better directive!</p>
+    </div>
+
+    <!-- Following is the example of ngSwitch directive -->
+    <div [ngSwitch]="value">
+      <div *ngSwitchCase="1">Value is 1</div>
+      <div *ngSwitchCase="5">value is 5</div>
+      <div *ngSwitchCase="10">value is 10</div>
+      <div *ngSwitchCase="100">value is 100</div>
+      <div *ngSwitchDefault>This is default value</div>
     </div>
   </div>
 </div>

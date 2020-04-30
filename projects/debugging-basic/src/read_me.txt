@@ -46,3 +46,6 @@ ngAfterContentInit  : Called every time the projected content has been checked
 ngAfterViewInit     : Called after the component's view (and child views) has been initialized
 ngAfterViewChecked  : Called every time the view (and child view) has been checked
 ngOnDestroy         : Called once the component is about to be destroyed
+
+
+* indicate the that this is structoral directive like *ngIf, *ngFor etc.
