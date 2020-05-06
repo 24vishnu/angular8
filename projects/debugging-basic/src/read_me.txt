@@ -49,3 +49,21 @@ ngOnDestroy         : Called once the component is about to be destroyed
 
 
 * indicate the that this is structoral directive like *ngIf, *ngFor etc.
+
+----------------------------------------------------------------------------
+SERVICE: A service is basically just another piece in your angular app, another class you can add
+which act as a central repository, as a central business unit you could say, something where you can store
+where you can centralize your code in.
+
+What is Dependency Injector?
+A dependency injector is something a class of ours will depends on. For example the new account component depends on 
+the loggingService becouse we want to call a method in the service and dependency injector simply inject this dependency, 
+injects an instance of this class aautomatically.
+
+The angular dependency injector is a hierarchical injector, that means if we provide a service in some place of our app,
+lets on one component the angular framework knows how to work an instance of the service for this component and important 
+all its child components. actuallu in child component and child to child component will receive the same instance of service.
+
+1.  AppModule : Same instance of service is available "Application-wide"
+2.  AppComponent: Same instance of sercie is available for all components (but not for other services)
+3.  AnyOtheComponent: same instance of service is available for all the components and its child components.

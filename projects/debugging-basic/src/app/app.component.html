@@ -35,13 +35,13 @@
     <app-even *ngFor="let number of evenNumbers" [number]="number"></app-even>
   </div>
 </div> -->
-
-<div class="container">
+<!-- ####################################################################################### -->
+<!-- <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">odd numbers</button>
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">odd numbers</button> -->
       <!-- <button class="btn btn-primary" *ngIf="onlyOdd" (click)="onlyOdd = !onlyOdd">even numbers</button> -->
-      <br><br>
+      <!-- <br><br>
       <ul class="list-group">
         <div *ngIf="onlyOdd">
           <li 
@@ -51,14 +51,6 @@
             *ngFor="let number of oddNumber">
                 {{ number }}
           </li>
-        </div>
-        <!-- <div *ngIf="!onlyOdd">
-          <li
-            class="list-group-item" 
-            *ngFor="let number of evenNumber"
-            [ngClass]="{odd: number % 2 !== 0}"
-            [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'pink'}">
-              {{ number }}</li>
         </div> -->
         <!-- above and blow scripts are same  
         ng-template never meant to be used like other HTML elements. 
@@ -79,7 +71,8 @@
             [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'skyblue'}">
               {{ number }}</li>
         </ng-template> -->
-        <div *appUnless="!onlyOdd">
+
+        <!-- <div *appUnless="!onlyOdd">
           <li
             class="list-group-item" 
             *ngFor="let number of evenNumber"
@@ -90,15 +83,30 @@
       </ul>
       <p appBasicHighlight>Style me using with basic directive!</p>
       <p [appBetterHighlight]="'red'" [defaultColor]="'peru'" >This style is using better directive!</p>
-    </div>
+    </div> -->
 
     <!-- Following is the example of ngSwitch directive -->
-    <div [ngSwitch]="value">
+    <!-- <div [ngSwitch]="value">
       <div *ngSwitchCase="1">Value is 1</div>
       <div *ngSwitchCase="5">value is 5</div>
       <div *ngSwitchCase="10">value is 10</div>
       <div *ngSwitchCase="100">value is 100</div>
       <div *ngSwitchDefault>This is default value</div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <app-new-account></app-new-account>
+      <hr>
+      <app-account 
+      *ngFor="let acc of accounts; let i = index"
+      [account]="acc"
+      [id]="i"></app-account>
     </div>
   </div>
 </div>
