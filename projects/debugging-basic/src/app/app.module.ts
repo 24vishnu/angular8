@@ -15,6 +15,9 @@ import { AccountComponent } from './understand_service/account/account.component
 import { NewAccountComponent } from './understand_service/new-account/new-account.component';
 import { AccountsService } from './services/accounts.service';
 import { LoggingService } from './services/logging.service';
+import { ActiveUsersComponent } from './Assignment1/active-users/active-users.component';
+import { InactiveUsersComponent } from './Assignment1/inactive-users/inactive-users.component';
+import { CounterService } from './Assignment1/counter.service';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,16 @@ import { LoggingService } from './services/logging.service';
     AccountComponent,
 
     NewAccountComponent,
+
+    ActiveUsersComponent,
+
+    InactiveUsersComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [ AccountsService, LoggingService ],
+  providers: [ AccountsService, LoggingService, CounterService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

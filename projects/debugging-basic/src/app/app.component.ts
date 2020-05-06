@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from './services/accounts.service';
+import { UserService } from './Assignment1/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [ UserService ]
 })
 export class AppComponent implements OnInit {
-  accounts: {name: string, status: string}[];
-  constructor(private accountervice: AccountsService) {}
+  // &******************************* Assignment ************************
+  ngOnInit() {}
+  // ********************************************************************
+  // accounts: {name: string, status: string}[];
+  // constructor(private accountervice: AccountsService) {}
 
-  ngOnInit() {
-    this.accounts = this.accountervice.accounts;
-  }
+  // ngOnInit() {
+  //   this.accounts = this.accountervice.accounts;
+  // }
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   /*
   numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
