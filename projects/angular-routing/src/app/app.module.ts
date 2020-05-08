@@ -11,6 +11,7 @@ import { UserComponent } from './users/user/user.component';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ServersService } from './servers/servers.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -23,6 +24,8 @@ const appRoutes: Routes = [
         {path: ':id/edit', component: EditServerComponent},
       ]
   },
+  {path: 'not-found', component: PageNotFoundComponent},
+  {path: '**', redirectTo: 'not-found'}
 ];
 
 @NgModule({
@@ -33,11 +36,12 @@ const appRoutes: Routes = [
     ServerComponent,
     EditServerComponent,
     UsersComponent,
-    UserComponent
+    UserComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-  // FormsModule,
+    FormsModule,
     // HttpModule,
     // regiter routes in our main application
     RouterModule.forRoot(appRoutes)
