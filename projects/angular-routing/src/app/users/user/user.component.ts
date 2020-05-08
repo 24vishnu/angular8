@@ -28,7 +28,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.params.subscribe( result => {
       this.user.id = result['id'];
       this.user.name = result['name'];
-    });
+     });
   }
 
   ngOnDestroy() {
