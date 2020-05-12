@@ -1,0 +1,26 @@
+<ul><u><h4>What is an Observable?</h4></u>
+    <li>An observable basically can be thought of as a data source.</li>
+    <li>In our angular project, an observable basically just is an object, we import from third party package, <b>RXJS.</b></li>
+    <li>The observable here is implemented in a way that it follows the observable pattern, 
+        (so we have ab observable and we have an observer.)</li>
+    <li>In between we have a time line.</li>
+    <li>In this time line we have multiple events emitted by the observable or data package</li>
+    <li><b>Observable</b> is for the consumer, it can be transformed and subscribed:
+        <ul><li><i>observable.map(x => ...).filter(x => ...).subscribe(x => ...)</i></li></ul>
+    </li>
+</ul>
+<ul> <h4><u>What is observer?</u></h4>
+    <li><b>Observer</b> is the interface which is used to feed an observable source
+        <ul>
+            <li><i>observer.next(newItem)</i></li>
+        </ul>
+    </li>
+    <li>In this we can handle data package in three ways
+        <ul>
+            <li>Handle Data</li>
+            <li>Handle Error</li>
+            <li>Handle Completion</li>
+        </ul>
+    </li>
+    <li>We use the patterns to handle asynchronous tasks. (as that http request/response)</li>
+</ul>

@@ -11,10 +11,14 @@ import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGaurd } from './servers/edit-server/can-deactivate-guard.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
+import { Home1Component } from './notes/home1/home1.component';
+import { User1Component } from './notes/user1/user1.component';
 
 
 const appRoutes: Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', component: Home1Component},
+    {path: 'user/:id', component: User1Component},
+    // {path: '', component: HomeComponent},
     {path: 'users', component: UsersComponent, children:
         [
             {path: ':id/:name', component: UserComponent},

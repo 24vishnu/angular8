@@ -17,6 +17,9 @@ import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGaurd } from './servers/edit-server/can-deactivate-guard.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
+import { ObservablesComponent } from './notes/observables/observables.component';
+import { User1Component } from './notes/user1/user1.component';
+import { Home1Component } from './notes/home1/home1.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { ServerResolver } from './servers/server/server-resolver.service';
     UsersComponent,
     UserComponent,
     PageNotFoundComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    ObservablesComponent,
+    User1Component,
+    Home1Component
   ],
   imports: [
     BrowserModule,
