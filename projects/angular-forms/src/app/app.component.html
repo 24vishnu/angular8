@@ -11,7 +11,6 @@
             <input 
                 type="text" 
                 class="form-control" 
-                id="username"
                 ngModel
                 name="username"
                 required
@@ -78,10 +77,22 @@
           </label>
         </div>
       <button 
-      class="btn btn-primary" 
-      type="submit"
-      [disabled]="!f.valid"> Submit </button>
+          class="btn btn-primary" 
+          type="submit"
+          [disabled]="!f.valid"> Submit </button>
       </form>
+    </div>
+  </div>
+
+  <hr />
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Username: {{user.username}}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Secret Question: {{user.screreQuestion}}</p>
+      <p>Answer: {{user.answer}}</p>
+      <p>Gender: {{user.gender}}</p>
     </div>
   </div>
 </div>
