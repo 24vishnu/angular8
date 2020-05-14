@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-ms-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+          <div id="assignmet">
+            <h2>Assignment</h2>
+            <br>
+            Create a Form with following Controls and Validators
+            <br> 1) Project name (should not be empty)
+            <br> 2) Mail (should not be a empty and a valid email)
+            <br> 3) Project status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
+            <br> 4) Submit button 
+
+            <br> And your validator which does not allow "test" as a project name
+
+            <br> Also implement that validator as an async Validator (replace that other one)
+
+            <br> Upon submitting the form, simply print the value to the console
+          </div>
+        <hr>
+        <form [formGroup]="project" (ngSubmit)="onSubmit()">
+            <div>
+                <div class="form-group">
+                    <label for="projectName">Project name</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="projectName"
+                        formControlName="projectName">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        name="email"
+                        class="form-control"
+                        formControlName="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="status">Project status</label>
+                <select name="status" id="status" formControlName="status" class="form-control">
+                    <option value="stable">Stable</option>
+                    <option value="critical">Critical</option>
+                    <option value="finished">Finished</option>
+                </select>
+            </div>            
+            <button class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
