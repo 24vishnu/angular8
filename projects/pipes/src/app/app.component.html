@@ -1,15 +1,16 @@
 <div class="container">
  <app-overview></app-overview>
-  <div class="row">
+  <br><br>
+ <div class="row">
     <div class="col-xs-12 col-ms-10 col-md-8 col-ms-offset-1 col-md-offset-2">
+      
       <input type="text" [(ngModel)]="filterStatus">
       <hr />
-      <div class="row">
-        <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
-        <br><br>
-        <hr>
-        <h2>App Status: {{ appStatus | async}}</h2>
-      </div>
+      <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      <br><br>
+      <hr>
+      <h2>App Status: {{ appStatus | async}}</h2>
+
       <ul class="list-group">
         <li 
           class="list-group-item" 
