@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { map, catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpParams, HttpEventType } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
 import { PostData } from './post.model';
+import { type } from 'os';
 
 @Injectable({
     providedIn: 'root'
@@ -20,9 +21,16 @@ export class PostService {
         const postData: PostData = {'title': title, 'content': content};
         return this.http.post<{name: string}>(
                 'https://ng-complete-guide-5dd47.firebaseio.com/posts.json',
-                postData
+                postData,
+                {
+                    observe: 'response',
+                    responseType: 'json' // here text is not allowed becouse we specify the generic like {name: string }
+                }
             ).subscribe(
-                (responseResult) => console.log(responseResult),
+                (responseResult) => {
+                    // here we can use body, status, header, ok, statusText, url snd type
+                    console.log(responseResult);
+                },
                 err => this.error.next(err.message)
             );
     }
@@ -38,10 +46,8 @@ export class PostService {
             {
                 // set custom HttpHeader
                 headers: new HttpHeaders({'Custom-header': 'hello vishnu'}),
-                // set HttpParam in url
-                // params: new HttpParams().set('id', 'one')
-                // set group of HttpParams
-                params: setParam
+                params: setParam,
+                responseType: 'json' // here text is not allowed becouse we specify the generic like <{[key: string]: PostData}>
             })
         .pipe(map( responseData => {
             const postsArray: PostData[] = [];
@@ -60,7 +66,24 @@ export class PostService {
 
     deletePosts() {
         return this.http.delete(
-            'https://ng-complete-guide-5dd47.firebaseio.com/posts.json'
-            );
+            'https://ng-complete-guide-5dd47.firebaseio.com/posts.json',
+            {
+                observe: 'events',
+                responseType: 'text' // json is default response type, text, blob etc
+            }
+            )
+            .pipe(tap(event => {
+                console.log(event);
+                // event have 5 types:
+                // 0 => HttpEventType.Sent
+                // 1 => HttpEventType.UploadProgress
+                // 2 => HttpEventType.ResponseHeader
+                // 3 => HttpEventType.DownloadProgress
+                // 4 => HttpEventType.Response
+                // 5 => HttpEventType.User
+                if (event.type === HttpEventType.Sent) {
+                    // ...
+                }
+            }));
     }
 }
