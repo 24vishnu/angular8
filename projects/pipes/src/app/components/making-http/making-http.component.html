@@ -44,7 +44,7 @@
             <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
                 <li class="list-group-item" *ngFor="let post of loadedPosts">
                     <h4>{{ post.title }}</h4>
-                    <p> {{ post.content}} </p>
+                    <p> {{ post.content }} </p>
                 </li> 
            </ul>
            <p *ngIf="isFetching && !error">Loading...</p>
