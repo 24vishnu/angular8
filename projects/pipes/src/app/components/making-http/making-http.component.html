@@ -37,6 +37,7 @@
             <button class="btn btn-danger" (click)="onClearPosts()" [disabled]="!loadedPosts.length > 1"> Clear Posts</button>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3">
             <p *ngIf="loadedPosts.length < 1 && !isFetching">No Post Available!</p>
@@ -46,7 +47,11 @@
                     <p> {{ post.content}} </p>
                 </li> 
            </ul>
-           <p *ngIf="isFetching">Loading...</p>
+           <p *ngIf="isFetching && !error">Loading...</p>
+           <div class="alert alert-danger" *ngIf="error">
+             <h2>An error Occurred!</h2>
+             <p>{{ error }}</p>
+           </div>
         </div>
     </div>
 </div>

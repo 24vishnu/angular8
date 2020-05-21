@@ -14,7 +14,7 @@ export class MakingHttpComponent implements OnInit {
 
   loadedPosts: PostData[] = [];
   isFetching = false;
-
+  error: string = null;
   constructor(private http: HttpClient, private postService: PostService) { }
 
   ngOnInit() {
@@ -23,6 +23,10 @@ export class MakingHttpComponent implements OnInit {
       result => {
         this.isFetching = false;
         this.loadedPosts = result;
+      },
+      error => {
+        this.error = error.message;
+        console.log(error.message);
       }
     );
   }
@@ -44,6 +48,10 @@ export class MakingHttpComponent implements OnInit {
       result => {
         this.isFetching = false;
         this.loadedPosts = result;
+      },
+      error => {
+        this.error = error.message;
+        console.log(error.message);
       }
     );
   }
