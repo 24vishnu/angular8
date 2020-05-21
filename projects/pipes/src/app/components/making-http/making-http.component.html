@@ -51,6 +51,7 @@
            <div class="alert alert-danger" *ngIf="error">
              <h2>An error Occurred!</h2>
              <p>{{ error }}</p>
+             <button class="btn btn-danger" (click)="onHandleError()"> Okay </button>
            </div>
         </div>
     </div>

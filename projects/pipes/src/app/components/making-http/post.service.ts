@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
 
 import { PostData } from './post.model';
 
@@ -10,6 +11,8 @@ import { PostData } from './post.model';
 
 // tslint:disable:object-literal-key-quotes
 export class PostService {
+    error = new Subject<string>();
+
     constructor(private http: HttpClient) {}
 
     createAndStorePosts(title: string, content: string) {
@@ -18,6 +21,9 @@ export class PostService {
         return this.http.post<{name: string}>(
                 'https://ng-complete-guide-5dd47.firebaseio.com/posts.json',
                 postData
+            ).subscribe(
+                (responseResult) => console.log(responseResult),
+                err => this.error.next(err.message)
             );
     }
 
@@ -25,14 +31,17 @@ export class PostService {
         // code logic...
         return this.http.get<{[key: string]: PostData}>('https://ng-complete-guide-5dd47.firebaseio.com/posts.json')
         .pipe(map( responseData => {
-        const postsArray: PostData[] = [];
-        for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-            postsArray.push({...responseData[key], id: key});
+            const postsArray: PostData[] = [];
+            for (const key in responseData) {
+                if (responseData.hasOwnProperty(key)) {
+                postsArray.push({...responseData[key], id: key});
+                }
             }
-        }
-        return postsArray;
-        })
+            return postsArray;
+            }),
+            catchError(errorRes => {
+                return throwError(errorRes);
+            })
         );
     }
 

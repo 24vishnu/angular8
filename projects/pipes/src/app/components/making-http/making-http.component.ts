@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { PostData } from './post.model';
 import { PostService } from './post.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-making-http',
   templateUrl: './making-http.component.html',
   styleUrls: ['./making-http.component.scss']
 })
-export class MakingHttpComponent implements OnInit {
+export class MakingHttpComponent implements OnInit, OnDestroy {
 
   loadedPosts: PostData[] = [];
   isFetching = false;
   error: string = null;
+  private errorSub: Subscription;
+
   constructor(private http: HttpClient, private postService: PostService) { }
 
   ngOnInit() {
+    this.errorSub = this.postService.error.subscribe( erroeMessage => this.error = erroeMessage);
+
     this.isFetching =  true;
     this.postService.fetchPosts().subscribe(
       result => {
@@ -25,6 +30,7 @@ export class MakingHttpComponent implements OnInit {
         this.loadedPosts = result;
       },
       error => {
+        this.isFetching = false;
         this.error = error.message;
         console.log(error.message);
       }
@@ -35,11 +41,7 @@ export class MakingHttpComponent implements OnInit {
     // Send Http request
     this.postService.createAndStorePosts(
       postData.title,
-      postData.content)
-      .subscribe(
-        (responseResult) => console.log(responseResult),
-        err => console.log(err)
-    );
+      postData.content);
   }
 
   onFetchPosts() {
@@ -65,4 +67,11 @@ export class MakingHttpComponent implements OnInit {
       );
   }
 
+  onHandleError() {
+    this.error = null;
+  }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe();
+  }
 }
