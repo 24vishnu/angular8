@@ -48,6 +48,13 @@ export class MakingHttpComponent implements OnInit {
     );
   }
 
-  onClearPosts() {}
+  onClearPosts() {
+    this.postService.deletePosts()
+      .subscribe(
+        res => {
+          this.loadedPosts = [];
+        }
+      );
+  }
 
 }
