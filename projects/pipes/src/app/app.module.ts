@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './components/overview/overview.component';
-import { ShortenPipe } from './pipes/shorten.pipe';
-import { FormsModule } from '@angular/forms';
-import { FilterPipe } from './pipes/filter.pipe';
+import { MakingHttpComponent } from './components/making-http/making-http.component';
+import { PipeExampleComponent } from './components/pipe-example/pipe-example.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +17,13 @@ import { FilterPipe } from './pipes/filter.pipe';
     OverviewComponent,
     ShortenPipe,
     FilterPipe,
+    MakingHttpComponent,
+    PipeExampleComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
