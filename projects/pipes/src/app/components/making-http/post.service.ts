@@ -15,18 +15,15 @@ export class PostService {
     createAndStorePosts(title: string, content: string) {
         // code logic...
         const postData: PostData = {'title': title, 'content': content};
-        this.http.post<{name: string}>(
+        return this.http.post<{name: string}>(
                 'https://ng-complete-guide-5dd47.firebaseio.com/posts.json',
                 postData
-            ).subscribe(
-                (responseResult) => console.log(responseResult),
-                err => console.log(err)
             );
     }
 
     fetchPosts() {
         // code logic...
-        this.http.get<{[key: string]: PostData}>('https://ng-complete-guide-5dd47.firebaseio.com/posts.json')
+        return this.http.get<{[key: string]: PostData}>('https://ng-complete-guide-5dd47.firebaseio.com/posts.json')
         .pipe(map( responseData => {
         const postsArray: PostData[] = [];
         for (const key in responseData) {
@@ -36,10 +33,6 @@ export class PostService {
         }
         return postsArray;
         })
-        )
-        .subscribe(
-        result => {
-        }
         );
     }
 }

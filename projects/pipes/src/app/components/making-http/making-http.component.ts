@@ -18,16 +18,34 @@ export class MakingHttpComponent implements OnInit {
   constructor(private http: HttpClient, private postService: PostService) { }
 
   ngOnInit() {
-    this.postService.fetchPosts();
+    this.isFetching =  true;
+    this.postService.fetchPosts().subscribe(
+      result => {
+        this.isFetching = false;
+        this.loadedPosts = result;
+      }
+    );
   }
 
   onCreatePost(postData: PostData) {
     // Send Http request
-    this.postService.createAndStorePosts(postData.title, postData.content);
+    this.postService.createAndStorePosts(
+      postData.title,
+      postData.content)
+      .subscribe(
+        (responseResult) => console.log(responseResult),
+        err => console.log(err)
+    );
   }
 
   onFetchPosts() {
-    this.postService.fetchPosts();
+    this.isFetching = true;
+    this.postService.fetchPosts().subscribe(
+      result => {
+        this.isFetching = false;
+        this.loadedPosts = result;
+      }
+    );
   }
 
   onClearPosts() {}
