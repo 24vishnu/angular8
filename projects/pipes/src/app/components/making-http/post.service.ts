@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpEventType } from '@angular/common/http';
-import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 
 import { PostData } from './post.model';
-import { type } from 'os';
 
 @Injectable({
     providedIn: 'root'
@@ -47,7 +46,7 @@ export class PostService {
                 // set custom HttpHeader
                 headers: new HttpHeaders({'Custom-header': 'hello vishnu'}),
                 params: setParam,
-                responseType: 'json' // here text is not allowed becouse we specify the generic like <{[key: string]: PostData}>
+                responseType: 'json' // here text is not allowed becouse we specify the generic like {[key: string]: PostData}
             })
         .pipe(map( responseData => {
             const postsArray: PostData[] = [];
