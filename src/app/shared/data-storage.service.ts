@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipes.model';
@@ -30,11 +30,7 @@ export class DataStorageService {
                     ingredients: recipe.ingredients ? recipe.ingredients : []
                 };
             });
-        }))
-        .subscribe(
-            response => {
-                this.recipeService.setRecipes(response);
-            }
+        }), tap( recipes => this.recipeService.setRecipes(recipes))
         );
     }
 
