@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError, Subject } from 'rxjs';
+
+import { User } from './user.model';
 
 export interface AuthResponseData {
     idToken: string;
@@ -15,6 +17,8 @@ export interface AuthResponseData {
 @Injectable({providedIn: 'root'})
 // tslint:disable
 export class AuthService {
+    public user = new Subject<User>();
+
     constructor(private http: HttpClient) {}
 
     onSignup(email: string, password: string) {
@@ -23,7 +27,9 @@ export class AuthService {
             email: email,
             password: password,
             returnSecureToken: true
-        }).pipe(catchError(this.handleError));
+        }).pipe(catchError(this.handleError), tap( respData => {
+            this.handleAuthentication(respData.email, respData.localId, respData.idToken, +respData.expiresIn);
+        }));
     }
 
     onLogin(email: string, password: string) {
@@ -32,9 +38,21 @@ export class AuthService {
             email: email,
             password: password,
             returnSecureToken: true
-        }).pipe(catchError(this.handleError));
+        }).pipe(catchError(this.handleError),  tap( respData => {
+            this.handleAuthentication(respData.email, respData.localId, respData.idToken, +respData.expiresIn);
+        }));
     }
 
+    private handleAuthentication(email: string, userId: string, idToken: string, expiresIn: number) {
+        const expireDate = new Date(new Date().getTime() + +expiresIn * 1000);
+            const user = new User(
+                email,
+                userId, 
+                idToken, 
+                expireDate);
+            this.user.next(user);
+            console.log(user);
+    }
     private handleError(errorRes: HttpErrorResponse) {
         let errorMessage: string;
             switch(errorRes.error.error.message) {
