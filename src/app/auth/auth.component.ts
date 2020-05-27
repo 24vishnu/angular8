@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
     templateUrl: './auth.component.html',
 })
 export class AuthComponent {
-    isLoginMode = false;
+    isLoginMode = true;
     isLoading = false;
     isError: string = null;
 
